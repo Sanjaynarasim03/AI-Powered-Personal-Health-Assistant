@@ -6,7 +6,12 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check": "npm run lint && npm run build",
+    "dev:backend": "cd .. && source venv/bin/activate && uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+    "dev:full": "concurrently \"npm run dev\" \"npm run dev:backend\"",
+    "clean": "rm -rf .next node_modules",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@types/axios": "^0.9.36",
@@ -20,6 +25,9 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^8.2.2",
+    "eslint": "^9.31.0",
+    "eslint-config-next": "^15.4.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
